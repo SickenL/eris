@@ -205,12 +205,12 @@ declare namespace Eris {
   interface ApplicationCommandOptionChoice<T extends Constants["ApplicationCommandOptionTypes"][keyof Pick<Constants["ApplicationCommandOptionTypes"], "STRING" | "INTEGER" | "NUMBER">] | unknown = unknown> {
     name: string;
     value: T extends Constants["ApplicationCommandOptionTypes"]["STRING"]
-      ? string
-      : T extends Constants["ApplicationCommandOptionTypes"]["NUMBER"]
-        ? number
-        : T extends Constants["ApplicationCommandOptionTypes"]["INTEGER"]
-          ? number
-          : number | string;
+    ? string
+    : T extends Constants["ApplicationCommandOptionTypes"]["NUMBER"]
+    ? number
+    : T extends Constants["ApplicationCommandOptionTypes"]["INTEGER"]
+    ? number
+    : number | string;
   }
   interface ApplicationCommandOptionWithChoices<T extends Constants["ApplicationCommandOptionTypes"][keyof Pick<Constants["ApplicationCommandOptionTypes"], "STRING" | "INTEGER" | "NUMBER">] = Constants["ApplicationCommandOptionTypes"][keyof Pick<Constants["ApplicationCommandOptionTypes"], "STRING" | "INTEGER" | "NUMBER">]> {
     autocomplete?: boolean;
@@ -788,7 +788,7 @@ declare namespace Eris {
     threadMembersUpdate: [channel: AnyThreadChannel, addedMembers: ThreadMember[], removedMembers: (ThreadMember | Uncached)[]];
     threadMemberUpdate: [channel: AnyThreadChannel, member: ThreadMember, oldMember: OldThreadMember];
     threadUpdate: [channel: AnyThreadChannel, oldChannel: OldThread | null];
-    typingStart: [channel: GuildTextableChannel | Uncached, user: User | Uncached, member: Member]
+    typingStart: [channel: GuildTextableChannel | Uncached, user: User | Uncached, member: Member | null]
     | [channel: PrivateChannel | Uncached, user: User | Uncached, member: null];
     unavailableGuildCreate: [guild: UnavailableGuild];
     unknown: [packet: RawPacket, id?: number];
@@ -1569,24 +1569,24 @@ declare namespace Eris {
     GATEWAY_VERSION: 9;
     REST_VERSION: 9;
     ActivityTypes: {
-      GAME:      0;
+      GAME: 0;
       STREAMING: 1;
       LISTENING: 2;
-      WATCHING:  3;
-      CUSTOM:    4;
+      WATCHING: 3;
+      CUSTOM: 4;
       COMPETING: 5;
     };
     ApplicationCommandOptionTypes: {
-      SUB_COMMAND:       1;
+      SUB_COMMAND: 1;
       SUB_COMMAND_GROUP: 2;
-      STRING:            3;
-      INTEGER:           4;
-      BOOLEAN:           5;
-      USER:              6;
-      CHANNEL:           7;
-      ROLE:              8;
-      MENTIONABLE:       9;
-      NUMBER:            10;
+      STRING: 3;
+      INTEGER: 4;
+      BOOLEAN: 5;
+      USER: 6;
+      CHANNEL: 7;
+      ROLE: 8;
+      MENTIONABLE: 9;
+      NUMBER: 10;
     };
     ApplicationCommandPermissionTypes: {
       ROLE: 1;
@@ -1594,28 +1594,28 @@ declare namespace Eris {
     };
     ApplicationCommandTypes: {
       CHAT_INPUT: 1;
-      USER:       2;
-      MESSAGE:    3;
+      USER: 2;
+      MESSAGE: 3;
     };
     AuditLogActions: {
       GUILD_UPDATE: 1;
 
-      CHANNEL_CREATE:           10;
-      CHANNEL_UPDATE:           11;
-      CHANNEL_DELETE:           12;
+      CHANNEL_CREATE: 10;
+      CHANNEL_UPDATE: 11;
+      CHANNEL_DELETE: 12;
       CHANNEL_OVERWRITE_CREATE: 13;
       CHANNEL_OVERWRITE_UPDATE: 14;
       CHANNEL_OVERWRITE_DELETE: 15;
 
-      MEMBER_KICK:        20;
-      MEMBER_PRUNE:       21;
-      MEMBER_BAN_ADD:     22;
-      MEMBER_BAN_REMOVE:  23;
-      MEMBER_UPDATE:      24;
+      MEMBER_KICK: 20;
+      MEMBER_PRUNE: 21;
+      MEMBER_BAN_ADD: 22;
+      MEMBER_BAN_REMOVE: 23;
+      MEMBER_UPDATE: 24;
       MEMBER_ROLE_UPDATE: 25;
-      MEMBER_MOVE:        26;
-      MEMBER_DISCONNECT:  27;
-      BOT_ADD:            28;
+      MEMBER_MOVE: 26;
+      MEMBER_DISCONNECT: 27;
+      BOT_ADD: 28;
 
       ROLE_CREATE: 30;
       ROLE_UPDATE: 31;
@@ -1633,14 +1633,14 @@ declare namespace Eris {
       EMOJI_UPDATE: 61;
       EMOJI_DELETE: 62;
 
-      MESSAGE_DELETE:      72;
+      MESSAGE_DELETE: 72;
       MESSAGE_BULK_DELETE: 73;
-      MESSAGE_PIN:         74;
-      MESSAGE_UNPIN:       75;
+      MESSAGE_PIN: 74;
+      MESSAGE_UNPIN: 75;
 
-      INTEGRATION_CREATE:    80;
-      INTEGRATION_UPDATE:    81;
-      INTEGRATION_DELETE:    82;
+      INTEGRATION_CREATE: 80;
+      INTEGRATION_UPDATE: 81;
+      INTEGRATION_DELETE: 82;
       STAGE_INSTANCE_CREATE: 83;
       STAGE_INSTANCE_UPDATE: 84;
       STAGE_INSTANCE_DELETE: 85;
@@ -1660,67 +1660,67 @@ declare namespace Eris {
       APPLICATION_COMMAND_PERMISSION_UPDATE: 121;
     };
     ButtonStyles: {
-      PRIMARY:   1;
+      PRIMARY: 1;
       SECONDARY: 2;
-      SUCCESS:   3;
-      DANGER:    4;
-      LINK:      5;
+      SUCCESS: 3;
+      DANGER: 4;
+      LINK: 5;
     };
     ChannelTypes: {
-      GUILD_TEXT:           0;
-      DM:                   1;
-      GUILD_VOICE:          2;
-      GROUP_DM:             3;
-      GUILD_CATEGORY:       4;
-      GUILD_NEWS:           5;
-      GUILD_STORE:          6;
+      GUILD_TEXT: 0;
+      DM: 1;
+      GUILD_VOICE: 2;
+      GROUP_DM: 3;
+      GUILD_CATEGORY: 4;
+      GUILD_NEWS: 5;
+      GUILD_STORE: 6;
 
-      GUILD_NEWS_THREAD:    10;
-      GUILD_PUBLIC_THREAD:  11;
+      GUILD_NEWS_THREAD: 10;
+      GUILD_PUBLIC_THREAD: 11;
       GUILD_PRIVATE_THREAD: 12;
-      GUILD_STAGE_VOICE:    13;
+      GUILD_STAGE_VOICE: 13;
       /** @deprecated */
-      GUILD_STAGE:          13;
+      GUILD_STAGE: 13;
     };
     ComponentTypes: {
-      ACTION_ROW:  1;
-      BUTTON:      2;
+      ACTION_ROW: 1;
+      BUTTON: 2;
       SELECT_MENU: 3;
     };
     ConnectionVisibilityTypes: {
-      NONE:     0;
+      NONE: 0;
       EVERYONE: 1;
     };
     DefaultMessageNotificationLevels: {
-      ALL_MESSAGES:  0;
+      ALL_MESSAGES: 0;
       ONLY_MENTIONS: 1;
     };
     ExplicitContentFilterLevels: {
-      DISABLED:              0;
+      DISABLED: 0;
       MEMBERS_WITHOUT_ROLES: 1;
-      ALL_MEMBERS:           2;
+      ALL_MEMBERS: 2;
     };
     GatewayOPCodes: {
-      DISPATCH:              0;
+      DISPATCH: 0;
       /** @deprecated */
-      EVENT:                 0;
-      HEARTBEAT:             1;
-      IDENTIFY:              2;
-      PRESENCE_UPDATE:       3;
+      EVENT: 0;
+      HEARTBEAT: 1;
+      IDENTIFY: 2;
+      PRESENCE_UPDATE: 3;
       /** @deprecated */
-      STATUS_UPDATE:         3;
-      VOICE_STATE_UPDATE:    4;
-      VOICE_SERVER_PING:     5;
-      RESUME:                6;
-      RECONNECT:             7;
+      STATUS_UPDATE: 3;
+      VOICE_STATE_UPDATE: 4;
+      VOICE_SERVER_PING: 5;
+      RESUME: 6;
+      RECONNECT: 7;
       REQUEST_GUILD_MEMBERS: 8;
       /** @deprecated */
-      GET_GUILD_MEMBERS:     8;
-      INVALID_SESSION:       9;
-      HELLO:                 10;
-      HEARTBEAT_ACK:         11;
-      SYNC_GUILD:            12;
-      SYNC_CALL:             13;
+      GET_GUILD_MEMBERS: 8;
+      INVALID_SESSION: 9;
+      HELLO: 10;
+      HEARTBEAT_ACK: 11;
+      SYNC_GUILD: 12;
+      SYNC_CALL: 13;
     };
     GuildFeatures: [
       "ANIMATED_ICON",
@@ -1749,7 +1749,7 @@ declare namespace Eris {
     ];
     GuildIntegrationExpireBehavior: {
       REMOVE_ROLE: 0;
-      KICK:        1;
+      KICK: 1;
     };
     GuildIntegrationTypes: [
       "twitch",
@@ -1757,9 +1757,9 @@ declare namespace Eris {
       "discord"
     ];
     GuildNSFWLevels: {
-      DEFAULT:        0;
-      EXPLICIT:       1;
-      SAFE:           2;
+      DEFAULT: 0;
+      EXPLICIT: 1;
+      SAFE: 2;
       AGE_RESTRICTED: 3;
     };
     ImageFormats: [
@@ -1774,195 +1774,195 @@ declare namespace Eris {
       MINIMUM: 16;
     };
     Intents: {
-      guilds:                 1;
-      guildMembers:           2;
-      guildBans:              4;
+      guilds: 1;
+      guildMembers: 2;
+      guildBans: 4;
       guildEmojisAndStickers: 8;
       /** @deprecated */
-      guildEmojis:            8;
-      guildIntegrations:      16;
-      guildWebhooks:          32;
-      guildInvites:           64;
-      guildVoiceStates:       128;
-      guildPresences:         256;
-      guildMessages:          512;
-      guildMessageReactions:  1024;
-      guildMessageTyping:     2048;
-      directMessages:         4096;
+      guildEmojis: 8;
+      guildIntegrations: 16;
+      guildWebhooks: 32;
+      guildInvites: 64;
+      guildVoiceStates: 128;
+      guildPresences: 256;
+      guildMessages: 512;
+      guildMessageReactions: 1024;
+      guildMessageTyping: 2048;
+      directMessages: 4096;
       directMessageReactions: 8192;
-      directMessageTyping:    16384;
-      guildScheduledEvents:   65536;
-      allNonPrivileged:       98045;
-      allPrivileged:          258;
-      all:                    98303;
+      directMessageTyping: 16384;
+      guildScheduledEvents: 65536;
+      allNonPrivileged: 98045;
+      allPrivileged: 258;
+      all: 98303;
     };
     InteractionResponseTypes: {
-      PONG:                                    1;
-      CHANNEL_MESSAGE_WITH_SOURCE:             4;
-      DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE:    5;
-      DEFERRED_UPDATE_MESSAGE:                 6;
-      UPDATE_MESSAGE:                          7;
+      PONG: 1;
+      CHANNEL_MESSAGE_WITH_SOURCE: 4;
+      DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE: 5;
+      DEFERRED_UPDATE_MESSAGE: 6;
+      UPDATE_MESSAGE: 7;
       APPLICATION_COMMAND_AUTOCOMPLETE_RESULT: 8;
     };
     InteractionTypes: {
-      PING:                             1;
-      APPLICATION_COMMAND:              2;
-      MESSAGE_COMPONENT:                3;
+      PING: 1;
+      APPLICATION_COMMAND: 2;
+      MESSAGE_COMPONENT: 3;
       APPLICATION_COMMAND_AUTOCOMPLETE: 4;
     };
     InviteTargetTypes: {
-      STREAM:               1;
+      STREAM: 1;
       EMBEDDED_APPLICATION: 2;
     };
     MFALevels: {
-      NONE:     0;
+      NONE: 0;
       ELEVATED: 1;
     };
     MessageActivityFlags: {
-      INSTANCE:                    1;
-      JOIN:                        2;
-      SPECTATE:                    4;
-      JOIN_REQUEST:                8;
-      SYNC:                        16;
-      PLAY:                        32;
-      PARTY_PRIVACY_FRIENDS:       64;
+      INSTANCE: 1;
+      JOIN: 2;
+      SPECTATE: 4;
+      JOIN_REQUEST: 8;
+      SYNC: 16;
+      PLAY: 32;
+      PARTY_PRIVACY_FRIENDS: 64;
       PARTY_PRIVACY_VOICE_CHANNEL: 128;
-      EMBEDDED:                    256;
+      EMBEDDED: 256;
     };
     MessageActivityTypes: {
-      JOIN:         1;
-      SPECTATE:     2;
-      LISTEN:       3;
+      JOIN: 1;
+      SPECTATE: 2;
+      LISTEN: 3;
       JOIN_REQUEST: 5;
     };
     MessageFlags: {
-      CROSSPOSTED:            1;
-      IS_CROSSPOST:           2;
-      SUPPRESS_EMBEDS:        4;
+      CROSSPOSTED: 1;
+      IS_CROSSPOST: 2;
+      SUPPRESS_EMBEDS: 4;
       SOURCE_MESSAGE_DELETED: 8;
-      URGENT:                 16;
-      HAS_THREAD:             32;
-      EPHEMERAL:              64;
-      LOADING:                128;
+      URGENT: 16;
+      HAS_THREAD: 32;
+      EPHEMERAL: 64;
+      LOADING: 128;
     };
     MessageTypes: {
-      DEFAULT:                                      0;
-      RECIPIENT_ADD:                                1;
-      RECIPIENT_REMOVE:                             2;
-      CALL:                                         3;
-      CHANNEL_NAME_CHANGE:                          4;
-      CHANNEL_ICON_CHANGE:                          5;
-      CHANNEL_PINNED_MESSAGE:                       6;
-      GUILD_MEMBER_JOIN:                            7;
-      USER_PREMIUM_GUILD_SUBSCRIPTION:              8;
-      USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_1:       9;
-      USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_2:       10;
-      USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_3:       11;
-      CHANNEL_FOLLOW_ADD:                           12;
+      DEFAULT: 0;
+      RECIPIENT_ADD: 1;
+      RECIPIENT_REMOVE: 2;
+      CALL: 3;
+      CHANNEL_NAME_CHANGE: 4;
+      CHANNEL_ICON_CHANGE: 5;
+      CHANNEL_PINNED_MESSAGE: 6;
+      GUILD_MEMBER_JOIN: 7;
+      USER_PREMIUM_GUILD_SUBSCRIPTION: 8;
+      USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_1: 9;
+      USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_2: 10;
+      USER_PREMIUM_GUILD_SUBSCRIPTION_TIER_3: 11;
+      CHANNEL_FOLLOW_ADD: 12;
 
-      GUILD_DISCOVERY_DISQUALIFIED:                 14;
-      GUILD_DISCOVERY_REQUALIFIED:                  15;
+      GUILD_DISCOVERY_DISQUALIFIED: 14;
+      GUILD_DISCOVERY_REQUALIFIED: 15;
       GUILD_DISCOVERY_GRACE_PERIOD_INITIAL_WARNING: 16;
-      GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING:   17;
-      THREAD_CREATED:                               18;
-      REPLY:                                        19;
-      CHAT_INPUT_COMMAND:                           20;
-      THREAD_STARTER_MESSAGE:                       21;
-      GUILD_INVITE_REMINDER:                        22;
-      CONTEXT_MENU_COMMAND:                         23;
+      GUILD_DISCOVERY_GRACE_PERIOD_FINAL_WARNING: 17;
+      THREAD_CREATED: 18;
+      REPLY: 19;
+      CHAT_INPUT_COMMAND: 20;
+      THREAD_STARTER_MESSAGE: 21;
+      GUILD_INVITE_REMINDER: 22;
+      CONTEXT_MENU_COMMAND: 23;
     };
     PermissionOverwriteTypes: {
       ROLE: 0;
       USER: 1;
     };
     Permissions: {
-      createInstantInvite:     1n;
-      kickMembers:             2n;
-      banMembers:              4n;
-      administrator:           8n;
-      manageChannels:          16n;
-      manageGuild:             32n;
-      addReactions:            64n;
-      viewAuditLog:            128n;
+      createInstantInvite: 1n;
+      kickMembers: 2n;
+      banMembers: 4n;
+      administrator: 8n;
+      manageChannels: 16n;
+      manageGuild: 32n;
+      addReactions: 64n;
+      viewAuditLog: 128n;
       /** @deprecated */
-      viewAuditLogs:           128n;
-      voicePrioritySpeaker:    256n;
-      voiceStream:             512n;
+      viewAuditLogs: 128n;
+      voicePrioritySpeaker: 256n;
+      voiceStream: 512n;
       /** @deprecated */
-      stream:                  512n;
-      viewChannel:             1024n;
+      stream: 512n;
+      viewChannel: 1024n;
       /** @deprecated */
-      readMessages:            1024n;
-      sendMessages:            2048n;
-      sendTTSMessages:         4096n;
-      manageMessages:          8192n;
-      embedLinks:              16384n;
-      attachFiles:             32768n;
-      readMessageHistory:      65536n;
-      mentionEveryone:         131072n;
-      useExternalEmojis:       262144n;
+      readMessages: 1024n;
+      sendMessages: 2048n;
+      sendTTSMessages: 4096n;
+      manageMessages: 8192n;
+      embedLinks: 16384n;
+      attachFiles: 32768n;
+      readMessageHistory: 65536n;
+      mentionEveryone: 131072n;
+      useExternalEmojis: 262144n;
       /** @deprecated */
-      externalEmojis:          262144n;
-      viewGuildInsights:       524288n;
-      voiceConnect:            1048576n;
-      voiceSpeak:              2097152n;
-      voiceMuteMembers:        4194304n;
-      voiceDeafenMembers:      8388608n;
-      voiceMoveMembers:        16777216n;
-      voiceUseVAD:             33554432n;
-      changeNickname:          67108864n;
-      manageNicknames:         134217728n;
-      manageRoles:             268435456n;
-      manageWebhooks:          536870912n;
+      externalEmojis: 262144n;
+      viewGuildInsights: 524288n;
+      voiceConnect: 1048576n;
+      voiceSpeak: 2097152n;
+      voiceMuteMembers: 4194304n;
+      voiceDeafenMembers: 8388608n;
+      voiceMoveMembers: 16777216n;
+      voiceUseVAD: 33554432n;
+      changeNickname: 67108864n;
+      manageNicknames: 134217728n;
+      manageRoles: 268435456n;
+      manageWebhooks: 536870912n;
       manageEmojisAndStickers: 1073741824n;
       /** @deprecated */
-      manageEmojis:            1073741824n;
-      useApplicationCommands:  2147483648n;
+      manageEmojis: 1073741824n;
+      useApplicationCommands: 2147483648n;
       /** @deprecated */
-      useSlashCommands:        2147483648n;
-      voiceRequestToSpeak:     4294967296n;
-      manageEvents:            8589934592n;
-      manageThreads:           17179869184n;
-      createPublicThreads:     34359738368n;
-      createPrivateThreads:    68719476736n;
-      useExternalStickers:     137438953472n;
-      sendMessagesInThreads:   274877906944n;
+      useSlashCommands: 2147483648n;
+      voiceRequestToSpeak: 4294967296n;
+      manageEvents: 8589934592n;
+      manageThreads: 17179869184n;
+      createPublicThreads: 34359738368n;
+      createPrivateThreads: 68719476736n;
+      useExternalStickers: 137438953472n;
+      sendMessagesInThreads: 274877906944n;
       startEmbeddedActivities: 549755813888n;
-      moderateMembers:         1099511627776n;
-      allGuild:                1110182461630n;
-      allText:                 535529258065n;
-      allVoice:                554385278737n;
-      all:                     2199023255551n;
+      moderateMembers: 1099511627776n;
+      allGuild: 1110182461630n;
+      allText: 535529258065n;
+      allVoice: 554385278737n;
+      all: 2199023255551n;
     };
     PremiumTiers: {
-      NONE:   0;
+      NONE: 0;
       TIER_1: 1;
       TIER_2: 2;
       TIER_3: 3;
     };
     PremiumTypes: {
-      NONE:          0;
+      NONE: 0;
       NITRO_CLASSIC: 1;
-      NITRO:         2;
+      NITRO: 2;
     };
     StageInstancePrivacyLevel: {
       PUBLIC: 1;
       GUILD_ONLY: 2;
     };
     StickerFormats: {
-      PNG:    1;
-      APNG:   2;
+      PNG: 1;
+      APNG: 2;
       LOTTIE: 3;
     };
     StickerTypes: {
       STANDARD: 1;
-      GUILD:    2;
+      GUILD: 2;
     };
     SystemChannelFlags: {
-      SUPPRESS_JOIN_NOTIFICATIONS:           1;
-      SUPPRESS_PREMIUM_SUBSCRIPTIONS:        2;
+      SUPPRESS_JOIN_NOTIFICATIONS: 1;
+      SUPPRESS_PREMIUM_SUBSCRIPTIONS: 2;
       SUPPRESS_GUILD_REMINDER_NOTIFICATIONS: 4;
-      SUPPRESS_JOIN_NOTIFICATION_REPLIES:    8;
+      SUPPRESS_JOIN_NOTIFICATION_REPLIES: 8;
     };
     SystemJoinMessages: [
       "%user% joined the party.",
@@ -1981,46 +1981,46 @@ declare namespace Eris {
     ];
     ThreadMemberFlags: {
       HAS_INTERACTED: 1;
-      ALL_MESSAGES:   2;
-      ONLY_MENTIONS:  4;
-      NO_MESSAGES:    8;
+      ALL_MESSAGES: 2;
+      ONLY_MENTIONS: 4;
+      NO_MESSAGES: 8;
     };
     UserFlags: {
-      NONE:                         0;
-      DISCORD_STAFF:                1;
-      DISCORD_EMPLOYEE:             1;
-      PARTNER:                      2;
-      PARTNERED_SERVER_OWNER:       2;
+      NONE: 0;
+      DISCORD_STAFF: 1;
+      DISCORD_EMPLOYEE: 1;
+      PARTNER: 2;
+      PARTNERED_SERVER_OWNER: 2;
       /** @deprecated */
-      DISCORD_PARTNER:              2;
-      HYPESQUAD:                    4;
-      HYPESQUAD_EVENTS:             4;
-      BUG_HUNTER_LEVEL_1:           8;
-      HYPESQUAD_ONLINE_HOUSE_1:     64;
-      HOUSE_BRAVERY:                64;
-      HYPESQUAD_ONLINE_HOUSE_2:     128;
-      HOUSE_BRILLIANCE:             128;
-      HYPESQUAD_ONLINE_HOUSE_3:     256;
-      HOUSE_BALANCE:                256;
-      PREMIUM_EARLY_SUPPORTER:      512;
-      EARLY_SUPPORTER:              512;
-      TEAM_PSEUDO_USER:             1024;
-      TEAM_USER:                    1024;
-      SYSTEM:                       4096;
-      BUG_HUNTER_LEVEL_2:           16384;
-      VERIFIED_BOT:                 65536;
-      VERIFIED_DEVELOPER:           131072;
-      VERIFIED_BOT_DEVELOPER:       131072;
+      DISCORD_PARTNER: 2;
+      HYPESQUAD: 4;
+      HYPESQUAD_EVENTS: 4;
+      BUG_HUNTER_LEVEL_1: 8;
+      HYPESQUAD_ONLINE_HOUSE_1: 64;
+      HOUSE_BRAVERY: 64;
+      HYPESQUAD_ONLINE_HOUSE_2: 128;
+      HOUSE_BRILLIANCE: 128;
+      HYPESQUAD_ONLINE_HOUSE_3: 256;
+      HOUSE_BALANCE: 256;
+      PREMIUM_EARLY_SUPPORTER: 512;
+      EARLY_SUPPORTER: 512;
+      TEAM_PSEUDO_USER: 1024;
+      TEAM_USER: 1024;
+      SYSTEM: 4096;
+      BUG_HUNTER_LEVEL_2: 16384;
+      VERIFIED_BOT: 65536;
+      VERIFIED_DEVELOPER: 131072;
+      VERIFIED_BOT_DEVELOPER: 131072;
       EARLY_VERIFIED_BOT_DEVELOPER: 131072;
-      CERTIFIED_MODERATOR:          262144;
-      DISCORD_CERTIFIED_MODERATOR:  262144;
-      BOT_HTTP_INTERACTIONS:        524288;
+      CERTIFIED_MODERATOR: 262144;
+      DISCORD_CERTIFIED_MODERATOR: 262144;
+      BOT_HTTP_INTERACTIONS: 524288;
     };
     VerificationLevels: {
-      NONE:      0;
-      LOW:       1;
-      MEDIUM:    2;
-      HIGH:      3;
+      NONE: 0;
+      LOW: 1;
+      MEDIUM: 2;
+      HIGH: 3;
       VERY_HIGH: 4;
     };
     VideoQualityModes: {
@@ -2028,23 +2028,23 @@ declare namespace Eris {
       FULL: 2;
     };
     VoiceOPCodes: {
-      IDENTIFY:            0;
-      SELECT_PROTOCOL:     1;
-      READY:               2;
-      HEARTBEAT:           3;
+      IDENTIFY: 0;
+      SELECT_PROTOCOL: 1;
+      READY: 2;
+      HEARTBEAT: 3;
       SESSION_DESCRIPTION: 4;
-      SPEAKING:            5;
-      HEARTBEAT_ACK:       6;
-      RESUME:              7;
-      HELLO:               8;
-      RESUMED:             9;
-      CLIENT_DISCONNECT:   13;
+      SPEAKING: 5;
+      HEARTBEAT_ACK: 6;
+      RESUME: 7;
+      HELLO: 8;
+      RESUMED: 9;
+      CLIENT_DISCONNECT: 13;
       /** @deprecated */
-      DISCONNECT:          13;
+      DISCONNECT: 13;
     };
     GuildScheduledEventStatus: {
       SCHEDULED: 1;
-      ACTIVE:	2;
+      ACTIVE: 2;
       COMPLETED: 3;
       CANCELED: 4;
     };
@@ -2058,9 +2058,9 @@ declare namespace Eris {
       GUILD_ONLY: 2;
     };
     WebhookTypes: {
-      INCOMING:         1;
+      INCOMING: 1;
       CHANNEL_FOLLOWER: 2;
-      APPLICATION:      3;
+      APPLICATION: 3;
     };
   }
 
@@ -3122,7 +3122,7 @@ declare namespace Eris {
     user?: User;
     acknowledge(flags?: number): Promise<void>;
     createFollowup(content: string | InteractionContent, file?: FileContent | FileContent[]): Promise<Message>;
-    createMessage(content: string | InteractionContent , file?: FileContent | FileContent[]): Promise<void>;
+    createMessage(content: string | InteractionContent, file?: FileContent | FileContent[]): Promise<void>;
     defer(flags?: number): Promise<void>;
     deleteMessage(messageID: string): Promise<void>;
     deleteOriginalMessage(): Promise<void>;
@@ -3213,10 +3213,10 @@ declare namespace Eris {
     guild: CT extends "withMetadata"
       ? Guild // Invite with Metadata always has guild prop
       : CH extends Extract<InviteChannel, GroupChannel> // Invite without Metadata
-        ? never // If the channel is GroupChannel, there is no guild
-        : CH extends Exclude<InviteChannel, InvitePartialChannel> // Invite without Metadata and not GroupChanel
-          ? Guild // If the invite channel is not partial
-          : Guild | undefined; // If the invite channel is partial
+      ? never // If the channel is GroupChannel, there is no guild
+      : CH extends Exclude<InviteChannel, InvitePartialChannel> // Invite without Metadata and not GroupChanel
+      ? Guild // If the invite channel is not partial
+      : Guild | undefined; // If the invite channel is partial
     inviter?: User;
     maxAge: CT extends "withMetadata" ? number : null;
     maxUses: CT extends "withMetadata" ? number : null;
